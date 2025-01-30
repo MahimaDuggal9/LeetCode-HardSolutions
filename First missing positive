@@ -1,0 +1,21 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        int max=0;
+        for(int i:nums){
+             if(i>max){
+                max=i;
+             }
+        }
+        HashSet<Integer> list=new HashSet<>();
+        for(int i:nums){
+            list.add(i);
+        }
+for(int i=1;i<=max;i++){
+    if(!list.contains(i)){
+        return i;
+    }
+}
+//if all numbers are present then return next number of series
+return max+1;
+    }
+}
