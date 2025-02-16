@@ -1,0 +1,7 @@
+// Alice always wins when n is even
+
+class Solution {
+    public boolean stoneGame(int[] piles) {
+        return true; 
+    }
+}
