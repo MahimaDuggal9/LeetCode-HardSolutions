@@ -1,0 +1,56 @@
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> neighbors;
+    public Node() {
+        val = 0;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val) {
+        val = _val;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val, ArrayList<Node> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+}
+*/
+
+class Solution {
+    public Node cloneGraph(Node node) {
+        // If the given node is null, return null
+        if (node == null) {
+            return null;
+        }
+
+        // HashMap to store the mapping between original node and its clone
+        Map<Node, Node> map = new HashMap<>();
+        
+        // Start DFS to clone the graph
+        return dfs(node, map);
+    }
+
+    // Helper DFS function to clone the nodes
+    private Node dfs(Node node, Map<Node, Node> map) {
+        // If node has already been cloned, return the clone from map
+        if (map.containsKey(node)) {
+            return map.get(node);
+        }
+
+        // Create a clone of the current node
+        Node cloneNode = new Node(node.val);
+        
+        // Put the cloned node into the map
+        map.put(node, cloneNode);
+
+        // Recursively clone all the neighbors of the current node
+        for (Node neighbor : node.neighbors) {
+            cloneNode.neighbors.add(dfs(neighbor, map));
+        }
+
+        // Return the clone of the current node
+        return cloneNode;
+    }
+}
